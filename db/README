@@ -1,12 +1,12 @@
 Base de Dados utilizada no projeto : MySQL
 
 1 - criar base/esquema: flexmania2011
-2 - executar o arquivo flexmania2011.sql através de algum client para DB
-    * este arquivo contém a criação das tabelas e uma massa de dados inicial
+2 - executar o arquivo flexmania2011.sql atrav√©s de algum client para DB
+    * este arquivo cont√©m a cria√ß√£o das tabelas e uma massa de dados inicial
     
 --
 
-o arquivo: FlexMania2011_EER.mwb é um modelo de entidades (MER) criado
-através do MySQL Workbench
+o arquivo: FlexMania2011_EER.mwb √© um modelo de entidades (MER) criado
+atrav√©s do MySQL Workbench
 
     http://www.mysql.com/products/workbench/
