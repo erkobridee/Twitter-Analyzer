@@ -1,0 +1,20 @@
+Aviso:
+
+Esses projetos foram desenvolvido utilizando:
+
+- Java 1.6
+- Adobe Flex 4.5 SDK
+
+- Eclipse Helios JEE versão 32 bits
+  - plugin do Adobe Flash Builder
+  
+- servidor: Apache Tomcat 6.x
+
+--
+
+Dica:
+quando for importar os projetos para o Eclipse, importe na respectiva ordem:
+
+1 - twitteranalyzer-java
+2 - twitteranalyzer-flex
+

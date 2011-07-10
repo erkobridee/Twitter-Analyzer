@@ -1,11 +1,11 @@
-Atenção esse projeto utiliza como base o Maven 3
+Aten√ß√£o esse projeto utiliza como base o Maven 3 
 
 Maven:
 http://maven.apache.org/
 
-* não foi utilizado o plugin do Maven no Eclipse...
-	apenas há a necessidade de criar a variável: M2_REPO
-	apontando para o diretório: 
+* n√£o foi utilizado o plugin do Maven no Eclipse...
+	apenas h√° a necessidade de criar a vari√°vel: M2_REPO
+	apontando para o diret√≥rio: 
 	${caminho}/.m2/repository
 	
 	exemplo:
@@ -18,17 +18,17 @@ Antes de importar o projeto no Eclipse JEE execute o comando do Maven:
 
 mvn compile
 
-para que todas as dependêncidas sejam baixadas para o seu repositório local,
-com isto não gere nenhum problema de jar não encontrado
+para que todas as depend√™ncidas sejam baixadas para o seu reposit√≥rio local,
+com isto n√£o gere nenhum problema de jar n√£o encontrado
 
 
 ---
 
-para gerar o pacote de distribuição .war execute o comando:
+para gerar o pacote de distribui√ß√£o .war execute o comando:
 
 mvn install
 
-o respectivo .war do projeto será gerado no diretório interno do projeto:
+o respectivo .war do projeto ser√° gerado no diret√≥rio interno do projeto:
 
 /target
 
