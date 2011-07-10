@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+     <!-- Define the Job Bean that will be executed. Our bean is named in the jobClass property. -->
+	<bean name="queriesJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="com.erkobridee.twitter.analyzer.dashboard.quartz.job.WorkJob"/>
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="work" value-ref="totalTweetsByQueryWork" />
+			</map>
+		</property>
+	</bean>
+
+     <!-- Associate the Job Bean with a Trigger. Triggers define when a job is executed. -->
+	<bean id="queriesJobTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+         <!-- see the example of method invoking job above -->
+         <property name="jobDetail" ref="queriesJob"/>
+         <property name="startDelay" value="0"/>
+         <property name="repeatInterval" value="1000"/>
+    </bean>
+
+	<!-- A list of Triggers to be scheduled and executed by Quartz -->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="queriesJobTrigger"/>
+			</list>
+		</property>
+	</bean>
+
+</beans>

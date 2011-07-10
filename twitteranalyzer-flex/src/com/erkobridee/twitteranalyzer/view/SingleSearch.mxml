@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%">
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+	
+	<fx:Script>
+		<![CDATA[
+			import assets.Assets;
+			
+			import com.erkobridee.twitteranalyzer.model.presentation.SingleSearchPM;
+			
+			[Bindable]
+			[Inject(source="singleSearchPM")]
+			public var presentation:SingleSearchPM;
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:HGroup width="100%" height="40" verticalAlign="middle">
+		<s:Spacer width="5" height="100%"/>
+		<mx:LinkButton 
+			icon="{Assets.backIcon}"
+			label="Back to All Searchs" 
+			click="{presentation.returnToAllSearchs()}"/>
+		<mx:VRule height="100%"/>
+		<s:Label height="100%" text="Query: {presentation.query.name}" verticalAlign="middle"/>
+		<s:Spacer width="100%" height="100%"/>
+		<mx:VRule height="100%"/>
+		<mx:LinkButton 
+			icon="{Assets.reaload}"
+			label="Update Data" 
+			click="{presentation.updateData()}"/>
+		<s:Spacer width="5" height="100%"/>
+	</s:HGroup>
+	<s:HGroup width="100%" height="100%">
+		<s:Panel width="50%" height="100%" title="Last 50 Tweets">
+			<s:List 
+				horizontalScrollPolicy="off"
+				x="0" y="0" width="100%" height="100%" dataProvider="{presentation.streamDP}"				
+				itemRenderer="com.erkobridee.twitteranalyzer.component.itemrenderer.StreamItemRenderer"></s:List>
+		</s:Panel>
+		<s:VGroup width="100%" height="100%">
+			<s:Panel width="100%" height="100%" title="Top 10 Users">
+				<s:layout>
+					<s:HorizontalLayout/>
+				</s:layout>
+				<mx:PieChart id="topUsersChart" width="100%" height="100%"
+							 dataProvider="{presentation.topUsersDP}" showDataTips="true">
+					<mx:series>
+						<mx:PieSeries field="value" nameField="name"/>
+					</mx:series>
+				</mx:PieChart>
+				<mx:Legend dataProvider="{topUsersChart}"/>
+			</s:Panel>
+			<s:Panel width="100%" height="100%" title="Tweets per Day of Current Month">
+				<mx:ColumnChart 
+					id="dailyTweetsChart" left="0" right="0" top="0" bottom="0"
+					dataProvider="{presentation.dailyTweetsDP}"
+					showDataTips="true" type="clustered">
+					<mx:series>
+						<mx:ColumnSeries xField="name" yField="value"/>
+					</mx:series>
+				</mx:ColumnChart>
+			</s:Panel>
+		</s:VGroup>
+		
+		
+		
+		
+	</s:HGroup>
+	
+</s:Group>

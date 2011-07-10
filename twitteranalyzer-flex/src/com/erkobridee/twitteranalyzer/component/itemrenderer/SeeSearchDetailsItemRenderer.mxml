@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:GridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					xmlns:s="library://ns.adobe.com/flex/spark" 
+					xmlns:mx="library://ns.adobe.com/flex/mx" clipAndEnableScrolling="true">
+	
+	
+	<fx:Metadata>
+		[Event(name="seeDetail",type="com.erkobridee.twitteranalyzer.component.event.SeeSearchDetailsItemRendererEvent")]
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import assets.Assets;
+			
+			import com.erkobridee.twitteranalyzer.component.event.SeeSearchDetailsItemRendererEvent;
+			import com.erkobridee.twitteranalyzer.model.entity.QueryVO;
+			
+			import mx.controls.Alert;
+			
+			override public function prepare(hasBeenRecycled:Boolean):void {
+				//lblData.text = data[column.dataField]
+				
+			}
+			
+			private function onClick():void
+			{
+				var send:SeeSearchDetailsItemRendererEvent = new SeeSearchDetailsItemRendererEvent(SeeSearchDetailsItemRendererEvent.SEE_DETAIL);
+				send.query = QueryVO(data);
+				dispatchEvent(send);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<mx:LinkButton x="10" y="9" icon="{Assets.detailsIcon}" click="onClick()"/>
+	
+</s:GridItemRenderer>

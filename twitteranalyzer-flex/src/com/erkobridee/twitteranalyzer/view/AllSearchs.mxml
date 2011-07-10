@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 width="100%" height="100%"
+		 creationComplete="init()">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.erkobridee.twitteranalyzer.component.event.SeeSearchDetailsItemRendererEvent;
+			import com.erkobridee.twitteranalyzer.event.AllSearchsEvent;
+			import com.erkobridee.twitteranalyzer.model.presentation.AllSearchsPM;
+			
+			import mx.controls.Alert;
+			
+			[Bindable]
+			[Inject(source="allSearchsPM")]
+			public var presentation:AllSearchsPM;
+			
+			private function init():void
+			{
+				queryDG.addEventListener(SeeSearchDetailsItemRendererEvent.SEE_DETAIL, seeDetailHandler);
+			}
+			
+			private function seeDetailHandler(event:SeeSearchDetailsItemRendererEvent):void
+			{			
+				presentation.seeDetail(event.query);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:VGroup left="0" right="0" top="0" bottom="0">
+		<s:HGroup width="100%" height="100%">
+			<s:Panel width="100%" height="100%" title="Queries List">
+				<s:DataGrid 
+					id="queryDG"
+					dataProvider="{presentation.queriesList}"
+					left="0" right="0" 
+					top="0" bottom="0" 
+					requestedRowCount="4">
+					<s:columns>
+						<s:ArrayList>
+							<s:GridColumn dataField="name" headerText="Query"></s:GridColumn>
+							<s:GridColumn 
+								dataField="id" 
+								width="85" 
+								headerText="Details"
+								itemRenderer="com.erkobridee.twitteranalyzer.component.itemrenderer.SeeSearchDetailsItemRenderer"></s:GridColumn>
+						</s:ArrayList>
+					</s:columns>
+				</s:DataGrid>
+			</s:Panel>
+			<s:Panel width="100%" height="100%" title="Total Tweets By Query">
+				<mx:PieChart id="TotalTweetsCharts" left="0" right="0" top="0" bottom="0"
+							 showDataTips="true"
+							 dataProvider="{presentation.totalTweetsByQueryList}">
+					<mx:series>
+						<mx:PieSeries field="count" nameField="name"/>
+					</mx:series>
+				</mx:PieChart>
+			</s:Panel>
+		</s:HGroup>
+		<s:Panel width="100%" height="100%" title="Tweets Indexed By Query">
+			<mx:LineChart 
+				id="tweetQueryChart"
+				dataProvider="{presentation.lineChartDP}"
+				showDataTips="true"
+				left="0" right="0" top="0" bottom="0">
+				
+				<mx:horizontalAxis>
+					<mx:DateTimeAxis 
+						id="ca" displayLocalTime="true"
+						labelUnits="seconds" 
+						dataUnits="seconds"
+						interval="1"/>          
+				</mx:horizontalAxis>
+				
+				<mx:series/>
+				
+			</mx:LineChart>
+		</s:Panel>
+	</s:VGroup>
+	
+</s:Group>

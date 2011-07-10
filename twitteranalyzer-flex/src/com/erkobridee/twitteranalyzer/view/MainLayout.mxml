@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009"
+		  xmlns:s="library://ns.adobe.com/flex/spark"
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  xmlns:view="com.erkobridee.twitteranalyzer.view.*"
+		  width="100%" height="100%" currentState="allSearchsST">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.erkobridee.twitteranalyzer.event.MainLayoutEvent;
+			
+			[EventHandler(event="MainLayoutEvent.SEE_DETAIL")]
+			public function seeDetailView(event:MainLayoutEvent):void
+			{
+				currentState = 'searchST';
+			}
+			
+			[EventHandler(event="MainLayoutEvent.SEE_ALL_SEARCHS")]
+			public function seeAllSearchsView(event:MainLayoutEvent):void
+			{
+				currentState = 'allSearchsST';
+			}
+			
+			
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="allSearchsST"/>
+		<s:State name="searchST"/>
+	</s:states>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:Group id="showArea" width="100%" height="100%">
+		<view:AllSearchs includeIn="allSearchsST" left="5" right="5" top="5" bottom="5">
+		</view:AllSearchs>
+		<view:SingleSearch includeIn="searchST" left="5" right="5" top="0" bottom="5">
+		</view:SingleSearch>
+	</s:Group>
+	
+	
+</s:VGroup>

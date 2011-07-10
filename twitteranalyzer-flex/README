@@ -1,0 +1,20 @@
+Atenção esse projeto foi desenvolvido no Adobe Flash Builder 4.5
+utilizando o Adobe Flex 4.5 SDK
+
+Após importar o projeto será necessário realizar 2 passos:
+
+1 - acessar as propriedades do projeto, item: Flex Builde Path
+alterar o Output Folder para: ../twitteranalyzer-java/src/main/webapp
+
+* considerando que o projeto java esteja no mesmo diretório que o projeto flex
+sendo assim o Flash Builder irá apontar para o caminho completo físico do 
+diretório indicado
+
+2 - como não enviei o diretório /html-template para o github, será necessário
+realizar um clean > build no projeto para que este seja gerado.
+
+* caso não seja gerado, procedimento para forçar regerar este diretório:
+	1 - acessar as propriedades do projeto
+	2 - selecionar o item: Flex Compiler
+	3 - desmarcar e remarcar todos os checkboxs : HTML Wrapper
+	

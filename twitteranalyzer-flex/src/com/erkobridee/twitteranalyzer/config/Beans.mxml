@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<swiz:BeanProvider 
+	xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+	xmlns:swiz="http://swiz.swizframework.org"	 
+	xmlns:controller="com.erkobridee.twitteranalyzer.controller.*"  
+	xmlns:presentation="com.erkobridee.twitteranalyzer.model.presentation.*">
+	
+	<fx:Declarations>
+		<s:ChannelSet id="streamingAmfChannel">
+			<s:StreamingAMFChannel url="/twitteranalyzer/messagebroker/streamingamf"/>
+		</s:ChannelSet> 
+		
+		<s:ChannelSet id="amfChannel">
+			<s:AMFChannel url="/twitteranalyzer/messagebroker/amf"/>			
+		</s:ChannelSet>
+		
+		<s:Consumer
+			id="totalTweetsByQueryConsumer" 
+			destination="totalTweetsByQuery" 
+			channelSet="{streamingAmfChannel}" />
+		
+		<s:Consumer
+			id="tweetsIndexedByQueryConsumer" 
+			destination="tweetsIndexedByQuery" 
+			channelSet="{streamingAmfChannel}" />
+		
+		<s:Consumer
+			id="tweetsStreamConsumer" 
+			destination="tweetsStream" 
+			channelSet="{streamingAmfChannel}" />
+		
+		
+		<s:RemoteObject 
+			id="queryService"
+			destination="queryService" 
+			channelSet="{amfChannel}" />
+		
+		<s:RemoteObject 
+			id="singleSearchService"
+			destination="singleSearchService" 
+			channelSet="{amfChannel}" />
+		
+	</fx:Declarations>
+	
+	<swiz:ServiceHelper id="serviceHelper"/>
+	
+	<!-- controllers -->
+	<controller:AllSearchsController />
+	<controller:SingleSearchController />
+	
+	<!-- presentation model -->
+	<presentation:AllSearchsPM id="allSearchsPM" />
+	<presentation:SingleSearchPM id="singleSearchPM" />
+	
+</swiz:BeanProvider>
