@@ -18,3 +18,6 @@ realizar um clean > build no projeto para que este seja gerado.
 	2 - selecionar o item: Flex Compiler
 	3 - desmarcar e remarcar todos os checkboxs : HTML Wrapper
 	
+3 - necessário realizar o download do arquivo swc do Swiz Framework 1.2
+	
+	http://swizframework.org/
